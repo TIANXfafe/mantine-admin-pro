@@ -22,7 +22,7 @@ export default defineConfig(({ mode, command }) => {
       viteEslint({
         // failOnError: false,
         include: ['src/**/*.js', 'src/**/*.jsx', 'src/**/*.ts', 'src/**/*.tsx'],
-        exclue: ['./node_modules/**'],
+        exclude: ['./node_modules/**'],
         cache: false
       }),
       visualizer({
