@@ -10,6 +10,7 @@ interface IInitialState {
   colorList: { [key: string]: string[] };
   layoutList: ILayoutType[];
   layoutStyleList: ILayoutType[];
+  collapsed: boolean;
 }
 
 const layoutList: ILayoutType[] = [
@@ -50,7 +51,8 @@ const initialState: IInitialState = {
   layout: layoutTheme,
   colorList: {},
   layoutList,
-  layoutStyleList
+  layoutStyleList,
+  collapsed: false
 };
 
 export const layoutSlice = createSlice({
@@ -78,6 +80,10 @@ export const layoutSlice = createSlice({
     // 切换主题色
     toggleThemeColor: (state, action) => {
       state.layout.primaryColor = action.payload;
+    },
+    // 切换侧边栏收缩
+    toggleCollapsed: (state, action) => {
+      state.collapsed = action.payload;
     }
   }
 });
@@ -86,7 +92,8 @@ export const {
   toggleLayout,
   toggleLayoutStyle,
   setThemeColor,
-  toggleThemeColor
+  toggleThemeColor,
+  toggleCollapsed
 } = layoutSlice.actions;
 
 export default layoutSlice.reducer;

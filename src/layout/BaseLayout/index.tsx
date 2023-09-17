@@ -1,19 +1,30 @@
-import SideLayout from '@/layout/SideLayout';
-import MixLayout from '@/layout/MixLayout';
-import TopLayout from '@/layout/TopLayout';
-import SettingDrawer from '@/layout/SettingDrawer';
+import { Context, createContext } from 'react';
+import { useMantineTheme } from '@mantine/core';
 import { useAppDispatch, useAppSelector } from '@/utils/hooks/useAppStore.ts';
 import {
   toggleLayout,
   toggleLayoutStyle,
   toggleThemeColor
 } from '@/redux/reducers/app.ts';
+import MixLayout from '@/layout/MixLayout';
+import SideLayout from '@/layout/SideLayout';
+import TopLayout from '@/layout/TopLayout';
+import SettingDrawer from '@/layout/SettingDrawer';
+
+export const LayoutContext: Context<{
+  layout?: 'mix' | 'side' | 'top';
+  sideWidth?: number;
+  sideCollapsedWidth?: number;
+  headerHeight?: number;
+  invertedBg?: string;
+  collapsed?: boolean;
+}> = createContext({});
 
 const BaseLayout = () => {
+  const theme = useMantineTheme();
   const dispatch = useAppDispatch();
-  const { layout, layoutList, layoutStyleList, colorList } = useAppSelector(
-    (state) => state.app
-  );
+  const { layout, layoutList, layoutStyleList, colorList, collapsed } =
+    useAppSelector((state) => state.app);
   const styleList =
     layout.layout === 'mix'
       ? layoutStyleList.filter((item) => item.id !== 'inverted')
@@ -23,14 +34,24 @@ const BaseLayout = () => {
     if (layout.layout === 'mix') {
       return <MixLayout />;
     } else if (layout.layout === 'side') {
-      return <SideLayout inverted={layout.layoutStyle === 'inverted'} />;
+      return <SideLayout />;
     } else if (layout.layout === 'top') {
-      return <TopLayout inverted={layout.layoutStyle === 'inverted'} />;
+      return <TopLayout />;
     }
   };
 
   return (
-    <>
+    <LayoutContext.Provider
+      value={{
+        layout: layout.layout,
+        sideWidth: layout.sideWidth,
+        sideCollapsedWidth: layout.sideCollapsedWidth,
+        headerHeight: layout.headerHeight,
+        invertedBg:
+          layout.layoutStyle === 'inverted' ? theme.colors.dark[9] : '',
+        collapsed
+      }}
+    >
       {renderLayout()}
       <SettingDrawer
         layout={layout.layout}
@@ -45,7 +66,7 @@ const BaseLayout = () => {
         }
         onSelectColor={(color) => dispatch(toggleThemeColor(color))}
       />
-    </>
+    </LayoutContext.Provider>
   );
 };
 

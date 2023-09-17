@@ -1,22 +1,15 @@
-import { AppShell, Box, Header, useMantineTheme } from '@mantine/core';
-import { Outlet } from 'react-router-dom';
 import { FC } from 'react';
+import { Outlet } from 'react-router-dom';
+import { AppShell, Box } from '@mantine/core';
+import LayoutHeader from '@/layout/Common/layoutHeader.tsx';
 
-interface IProps {
-  inverted?: boolean;
-}
+interface IProps {}
 
-const TopLayout: FC<IProps> = ({ inverted }) => {
-  const theme = useMantineTheme();
-
+const TopLayout: FC<IProps> = () => {
   return (
     <AppShell
       padding={0}
-      header={
-        <Header height={48} p={0} bg={inverted ? theme.colors.dark[9] : ''}>
-          Header
-        </Header>
-      }
+      header={<LayoutHeader>Header</LayoutHeader>}
       styles={(theme) => ({
         main: {
           backgroundColor:

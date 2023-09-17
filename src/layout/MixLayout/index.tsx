@@ -1,22 +1,17 @@
-import { AppShell, Navbar, Header, Box } from '@mantine/core';
-
-// ** Router Imports
+import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
+import { AppShell, Box } from '@mantine/core';
+import LayoutHeader from '@/layout/Common/layoutHeader.tsx';
+import LayoutSide from '@/layout/Common/layoutSide.tsx';
 
-const MixLayout = () => {
+interface IProps {}
+
+const MixLayout: FC<IProps> = () => {
   return (
     <AppShell
       padding={0}
-      navbar={
-        <Navbar width={{ base: 240 }} height="100vh" p={0}>
-          Navbar
-        </Navbar>
-      }
-      header={
-        <Header height={48} p={0}>
-          Header
-        </Header>
-      }
+      header={<LayoutHeader>Header</LayoutHeader>}
+      navbar={<LayoutSide>Navbar</LayoutSide>}
       styles={(theme) => ({
         main: {
           backgroundColor:
