@@ -1,11 +1,13 @@
 import { FC, ReactNode, useContext } from 'react';
-import { createStyles, Header, Group } from '@mantine/core';
+import { createStyles, Header, Group, Burger } from '@mantine/core';
 import { LayoutContext } from '@/layout/BaseLayout';
 import Logo from '@/layout/Common/logo.tsx';
 import CustomTitle from '@/layout/Common/title.tsx';
+import { useAppDispatch } from '@/utils/hooks/useAppStore.ts';
+import { toggleCollapsed } from '@/redux/reducers/app.ts';
 
 interface IProps {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const useStyles = createStyles({
@@ -18,7 +20,8 @@ const useStyles = createStyles({
 });
 
 const LayoutHeader: FC<IProps> = ({ children }) => {
-  const { layout, headerHeight, invertedBg, logo, title } =
+  const dispatch = useAppDispatch();
+  const { layout, headerHeight, invertedBg, logo, title, isMobile, collapsed } =
     useContext(LayoutContext);
 
   const { classes } = useStyles();
@@ -37,10 +40,17 @@ const LayoutHeader: FC<IProps> = ({ children }) => {
       }}
     >
       <div className={classes.heightLeft}>
-        {layout !== 'side' ? (
+        {isMobile ? (
+          <Burger
+            opened={collapsed!}
+            onClick={() => dispatch(toggleCollapsed(!collapsed))}
+            mr={8}
+          />
+        ) : null}
+        {layout !== 'side' || isMobile ? (
           <Group spacing="xs">
-            <Logo src={logo!} />
-            <CustomTitle title={title} />
+            <Logo src={logo!} size={isMobile ? 24 : undefined} />
+            {!isMobile ? <CustomTitle title={title} /> : null}
           </Group>
         ) : null}
       </div>

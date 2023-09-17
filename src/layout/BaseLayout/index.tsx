@@ -1,7 +1,8 @@
-import { Context, createContext } from 'react';
+import { Context, createContext, useEffect } from 'react';
 import { useMantineTheme } from '@mantine/core';
 import { useAppDispatch, useAppSelector } from '@/utils/hooks/useAppStore.ts';
 import {
+  toggleCollapsed,
   toggleLayout,
   toggleLayoutStyle,
   toggleThemeColor
@@ -9,7 +10,9 @@ import {
 import MixLayout from '@/layout/MixLayout';
 import SideLayout from '@/layout/SideLayout';
 import TopLayout from '@/layout/TopLayout';
+import MobileLayout from '@/layout/MobileLayout';
 import SettingDrawer from '@/layout/SettingDrawer';
+import { useQueryBreakpoints } from '@/utils/hooks/useQueryBreakpoint.tsx';
 
 export const LayoutContext: Context<{
   layout?: 'mix' | 'side' | 'top';
@@ -20,11 +23,13 @@ export const LayoutContext: Context<{
   collapsed?: boolean;
   logo?: string;
   title?: string;
+  isMobile?: boolean;
 }> = createContext({});
 
 const BaseLayout = () => {
   const theme = useMantineTheme();
   const dispatch = useAppDispatch();
+  const { isDesktop, isPad, isMobile } = useQueryBreakpoints();
   const { layout, layoutList, layoutStyleList, colorList, collapsed } =
     useAppSelector((state) => state.app);
   const styleList =
@@ -33,14 +38,29 @@ const BaseLayout = () => {
       : layoutStyleList;
 
   const renderLayout = () => {
-    if (layout.layout === 'mix') {
-      return <MixLayout />;
-    } else if (layout.layout === 'side') {
-      return <SideLayout />;
-    } else if (layout.layout === 'top') {
-      return <TopLayout />;
+    if (isMobile) {
+      return <MobileLayout />;
+    } else {
+      if (layout.layout === 'mix') {
+        return <MixLayout />;
+      } else if (layout.layout === 'side') {
+        return <SideLayout />;
+      } else if (layout.layout === 'top') {
+        return <TopLayout />;
+      }
     }
   };
+
+  useEffect(() => {
+    if (isPad) {
+      dispatch(toggleCollapsed(true));
+    } else if (isDesktop) {
+      dispatch(toggleCollapsed(false));
+    }
+    if (isMobile) {
+      dispatch(toggleCollapsed(false));
+    }
+  }, [isDesktop, isPad, isMobile]);
 
   return (
     <LayoutContext.Provider
@@ -53,7 +73,8 @@ const BaseLayout = () => {
           layout.layoutStyle === 'inverted' ? theme.colors.dark[9] : '',
         collapsed,
         logo: layout.logo,
-        title: layout.title
+        title: layout.title,
+        isMobile
       }}
     >
       {renderLayout()}
