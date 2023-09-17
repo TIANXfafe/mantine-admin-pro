@@ -18,6 +18,8 @@ export const LayoutContext: Context<{
   headerHeight?: number;
   invertedBg?: string;
   collapsed?: boolean;
+  logo?: string;
+  title?: string;
 }> = createContext({});
 
 const BaseLayout = () => {
@@ -49,7 +51,9 @@ const BaseLayout = () => {
         headerHeight: layout.headerHeight,
         invertedBg:
           layout.layoutStyle === 'inverted' ? theme.colors.dark[9] : '',
-        collapsed
+        collapsed,
+        logo: layout.logo,
+        title: layout.title
       }}
     >
       {renderLayout()}

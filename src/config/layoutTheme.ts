@@ -1,3 +1,5 @@
+import logo from '@/assets/react.svg';
+
 export interface ILayoutType {
   id?: string;
   key: 'mix' | 'side' | 'top';
@@ -21,6 +23,8 @@ export interface ILayoutTheme {
   sideWidth: number;
   // 侧边栏收缩宽度
   sideCollapsedWidth: number;
+  // 图标
+  logo: string;
 }
 
 export const layoutTheme: ILayoutTheme = {
@@ -30,7 +34,8 @@ export const layoutTheme: ILayoutTheme = {
   primaryColor: 'blue',
   headerHeight: 48,
   sideWidth: 240,
-  sideCollapsedWidth: 48
+  sideCollapsedWidth: 48,
+  logo
   // showSideTrigger: 'arrow-circle',
   // collapsed: false,
   // theme: 'default',

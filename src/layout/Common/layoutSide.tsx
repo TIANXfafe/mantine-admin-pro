@@ -18,7 +18,7 @@ const useStyles = createStyles((_, { sideWidth }: { sideWidth: number }) => {
       left: `${sideWidth}px`,
       transform: `translateY(-50%) translateX(-50%)`,
       zIndex: 1001,
-      transition: 'all .3s linear'
+      transition: 'all .2s linear'
     }
   };
 });
@@ -42,7 +42,7 @@ const LayoutSide: FC<IProps> = ({ children }) => {
       bg={layout === 'side' ? invertedBg : ''}
       id="side"
       style={{
-        transition: 'all .3s linear',
+        transition: 'all .2s linear',
         overflowY: 'auto',
         overflowX: 'hidden'
       }}
