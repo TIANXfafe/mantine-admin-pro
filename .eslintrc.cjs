@@ -25,7 +25,9 @@ module.exports = {
   ignorePatterns: ['dist', '.eslintrc.cjs', '.prettierrc.cjs'],
   plugins: ['react-refresh', 'react', '@typescript-eslint', 'prettier', 'html'],
   rules: {
-    'react-refresh/only-export-components': 'warn',
+    '@typescript-eslint/no-explicit-any': 'off',
+    'react-refresh/only-export-components': 'off',
+    'react-hooks/exhaustive-deps': 'off',
     'prettier/prettier': 'error',
     'arrow-body-style': 'off',
     'prefer-arrow-callback': 'off'

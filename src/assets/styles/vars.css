@@ -1,0 +1,4 @@
+html {
+  --pro-admin-layout-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .18);
+  --pro-admin-dark-layout-box-shadow: 0 1px 3px 0 rgba(200, 200, 200, .18);
+}

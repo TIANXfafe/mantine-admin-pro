@@ -1,35 +1,37 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
+import { Suspense, useEffect } from 'react';
+import Router from './router/Router';
+import { MantineProvider, useMantineTheme } from '@mantine/core';
+import { useAppDispatch, useAppSelector } from '@/utils/hooks/useAppStore.ts';
 
-function App() {
-  const [count, setCount] = useState(0);
+const App = () => {
+  const theme = useMantineTheme();
+  const dispatch = useAppDispatch();
+  const { layout } = useAppSelector((state) => state.app);
+
+  useEffect(() => {
+    dispatch({ type: 'app/setThemeColor', payload: theme.colors });
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <MantineProvider
+      withCSSVariables
+      withGlobalStyles
+      withNormalizeCSS
+      theme={{
+        shadows: {
+          layout: 'var(--pro-admin-layout-box-shadow)',
+          darkLayout: 'var(--pro-admin-dark-layout-box-shadow)'
+        },
+        colorScheme: layout.layoutStyle === 'dark' ? 'dark' : 'light',
+        transitionTimingFunction: 'linear',
+        primaryColor: layout.primaryColor
+      }}
+    >
+      <Suspense fallback={null}>
+        <Router />
+      </Suspense>
+    </MantineProvider>
   );
-}
+};
 
 export default App;
