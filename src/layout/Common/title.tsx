@@ -8,7 +8,15 @@ interface IProps {
 
 const CustomTitle: FC<IProps> = ({ title, size = 24 }) => {
   return title ? (
-    <Title order={1} size={`${size}px`}>
+    <Title
+      order={1}
+      size={`${size}px`}
+      sx={{
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap'
+      }}
+    >
       {title}
     </Title>
   ) : null;

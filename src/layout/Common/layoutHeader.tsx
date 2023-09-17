@@ -11,7 +11,8 @@ interface IProps {
 const useStyles = createStyles({
   heightLeft: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    overflow: 'hidden'
   },
   headerRight: {}
 });
@@ -36,10 +37,12 @@ const LayoutHeader: FC<IProps> = ({ children }) => {
       }}
     >
       <div className={classes.heightLeft}>
-        <Group spacing="xs">
-          <Logo src={logo!} />
-          <CustomTitle title={title} />
-        </Group>
+        {layout !== 'side' ? (
+          <Group spacing="xs">
+            <Logo src={logo!} />
+            <CustomTitle title={title} />
+          </Group>
+        ) : null}
       </div>
       <div className={classes.headerRight}>{children}</div>
     </Header>

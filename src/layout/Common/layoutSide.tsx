@@ -1,10 +1,12 @@
 import { FC, ReactNode, useContext } from 'react';
-import { createStyles, Navbar, ThemeIcon } from '@mantine/core';
+import { createStyles, Group, Navbar, ThemeIcon } from '@mantine/core';
 import { LayoutContext } from '@/layout/BaseLayout';
 import { createPortal } from 'react-dom';
 import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react';
 import { useAppDispatch } from '@/utils/hooks/useAppStore.ts';
 import { toggleCollapsed } from '@/redux/reducers/app.ts';
+import Logo from '@/layout/Common/logo.tsx';
+import CustomTitle from '@/layout/Common/title.tsx';
 
 interface IProps {
   children: ReactNode;
@@ -19,14 +21,26 @@ const useStyles = createStyles((_, { sideWidth }: { sideWidth: number }) => {
       transform: `translateY(-50%) translateX(-50%)`,
       zIndex: 1001,
       transition: 'all .2s linear'
+    },
+    sideHeader: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
     }
   };
 });
 
 const LayoutSide: FC<IProps> = ({ children }) => {
   const dispatch = useAppDispatch();
-  const { layout, sideWidth, sideCollapsedWidth, invertedBg, collapsed } =
-    useContext(LayoutContext);
+  const {
+    layout,
+    sideWidth,
+    sideCollapsedWidth,
+    invertedBg,
+    collapsed,
+    logo,
+    title
+  } = useContext(LayoutContext);
 
   const layoutWidth: number = collapsed ? sideCollapsedWidth! : sideWidth!;
 
@@ -62,7 +76,19 @@ const LayoutSide: FC<IProps> = ({ children }) => {
         </div>,
         document.querySelector('#root') as Element
       )}
-      {children}
+      <Navbar.Section mt="xs">
+        <div className={classes.sideHeader}>
+          {layout === 'side' ? (
+            <Group spacing="xs">
+              <Logo src={logo!} />
+              {!collapsed ? <CustomTitle title={title} size={20} /> : null}
+            </Group>
+          ) : null}
+        </div>
+      </Navbar.Section>
+      <Navbar.Section grow mt="xs">
+        {children}
+      </Navbar.Section>
     </Navbar>
   );
 };
