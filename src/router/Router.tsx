@@ -7,13 +7,10 @@ import { useRoutes } from 'react-router-dom';
 // ** Layouts
 import BaseLayout from '@/layout/BaseLayout';
 import BlankLayout from '@/layout/BlankLayout';
-// import MixLayout from '@/layout/MixLayout';
-// import SideLayout from '@/layout/SideLayout';
-// import TopLayout from '@/layout/TopLayout';
 
 // ** Components
-const DefaultError = lazy(() => import('@/pages/Error/DefaultError'));
 const Login = lazy(() => import('@/pages/Login'));
+const DefaultError = lazy(() => import('@/pages/Error/DefaultError'));
 const NotAuthorized = lazy(() => import('@/pages/Error/NotAuthorized'));
 
 const Router = () => {
