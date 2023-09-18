@@ -8,6 +8,7 @@ import Container from './container.tsx';
 import CheckboxLayout from './checkboxLayout.tsx';
 import CheckboxColor from './checkboxColor.tsx';
 import { ILayoutType } from '@/config/layoutTheme.ts';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
   floatTop?: number | string;
@@ -62,6 +63,7 @@ const Index: FC<IProps> = ({
 }) => {
   const { classes } = useStyles({ floatTop, drawerWidth });
   const [opened, { open, close }] = useDisclosure(false);
+  const { t } = useTranslation();
 
   return (
     <>
@@ -97,13 +99,13 @@ const Index: FC<IProps> = ({
           overflowY: 'unset'
         }}
       >
-        <Container title="整体风格设置">
+        <Container title={t('global.layout.setting.drawer.style')}>
           <Group spacing="xs">
             {layoutStyleList.map((item) => (
               <CheckboxLayout
                 key={item.id}
                 layout={item.key}
-                title={item.title}
+                title={t(item.title)}
                 dark={item.dark}
                 inverted={item.inverted}
                 checked={item.id === layoutStyle}
@@ -112,25 +114,26 @@ const Index: FC<IProps> = ({
             ))}
           </Group>
         </Container>
-        <Container title="导航模式">
+        <Container title={t('global.layout.setting.drawer.layout')}>
           <Group spacing="xs">
             {layoutList.map((item) => (
               <CheckboxLayout
                 key={item.key}
                 layout={item.key}
-                title={item.title}
+                title={t(item.title)}
                 checked={item.key === layout}
                 onClick={(layout) => onToggleLayout(layout)}
               />
             ))}
           </Group>
         </Container>
-        <Container title="主题色">
+        <Container title={t('global.layout.setting.drawer.theme')}>
           <Group spacing="xs">
             {Object.keys(colorList).map((item) => (
               <CheckboxColor
                 key={item}
                 color={item}
+                title={t(`global.layout.setting.drawer.theme.${item}`)}
                 colorList={colorList[item]}
                 checked={item === primaryColor}
                 onClick={(color) => onSelectColor(color)}

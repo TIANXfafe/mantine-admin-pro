@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
-import { AppShell, Box } from '@mantine/core';
+import { AppShell, Box, Button } from '@mantine/core';
+import { changeLanguage } from 'i18next';
 import LayoutHeader from '@/layout/Common/layoutHeader.tsx';
 import LayoutSide from '@/layout/Common/layoutSide.tsx';
 
@@ -22,6 +23,8 @@ const MixLayout: FC<IProps> = () => {
       })}
     >
       <Box sx={{ height: '100%' }}>
+        <Button onClick={() => changeLanguage('zh')}>切换中文</Button>
+        <Button onClick={() => changeLanguage('en')}>切换英文</Button>
         <Outlet />
       </Box>
     </AppShell>

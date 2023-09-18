@@ -16,33 +16,33 @@ interface IInitialState {
 const layoutList: ILayoutType[] = [
   {
     key: 'mix',
-    title: '混合菜单布局'
+    title: 'global.layout.setting.drawer.layout.mix'
   },
   {
     key: 'side',
-    title: '侧边菜单布局'
+    title: 'global.layout.setting.drawer.layout.top'
   },
   {
     key: 'top',
-    title: '顶部菜单布局'
+    title: 'global.layout.setting.drawer.layout.top'
   }
 ];
 const layoutStyleList: ILayoutType[] = [
   {
     id: 'light',
     key: 'side',
-    title: '亮色模式'
+    title: 'global.layout.setting.drawer.style.light'
   },
   {
     id: 'inverted',
     key: 'side',
     inverted: true,
-    title: '反转色模式'
+    title: 'global.layout.setting.drawer.style.inverted'
   },
   {
     id: 'dark',
     key: 'side',
-    title: '暗色模式',
+    title: 'global.layout.setting.drawer.style.dark',
     dark: true
   }
 ];
