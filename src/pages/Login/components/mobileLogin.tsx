@@ -4,8 +4,16 @@ import { IconLock, IconDeviceMobile } from '@tabler/icons-react';
 import { isPhone } from '@/utils/methods/regTest.ts';
 import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
+import { sendCaptchaApi } from '@/services/apis/user';
+import { userLoginAsync } from '@/redux/reducers/user.ts';
+import { useAppDispatch, useAppSelector } from '@/utils/hooks/useAppStore.ts';
+import { useNavigate } from 'react-router-dom';
 
 const MobileLogin = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { loading } = useAppSelector((state) => state.user);
+
   const [reSendSeconds, setReSendSeconds] = useState<number>(0);
 
   const form = useForm({
@@ -27,13 +35,28 @@ const MobileLogin = () => {
     }
   });
 
-  const sendCaptcha = () => {
-    setReSendSeconds(60);
-    toast.success('发送成功！');
+  const sendCaptcha = async () => {
+    const { hasError } = form.validateField('mobile');
+    if (hasError) {
+      return;
+    }
+    const mobile = form.getInputProps('mobile').value;
+    const res = await sendCaptchaApi({ mobile });
+    if (res.code === 0 && res.data) {
+      setReSendSeconds(60);
+      toast.success('验证码发送成功！');
+    }
   };
 
   const handleLogin = async (values: any) => {
     console.log(values);
+    values.type = 'mobile';
+    const res = await dispatch(userLoginAsync(values));
+    if (res.type.includes('rejected')) {
+      form.setFieldValue('captcha', '');
+      return;
+    }
+    navigate('/home', { replace: true });
   };
 
   useEffect(() => {
@@ -84,7 +107,7 @@ const MobileLogin = () => {
           {...form.getInputProps('autoLogin', { type: 'checkbox' })}
         />
 
-        <Button type="submit" fullWidth mt="10px">
+        <Button type="submit" fullWidth mt="10px" loading={loading}>
           登录
         </Button>
       </Stack>

@@ -24,7 +24,7 @@ const instance = axios.create({
   baseURL,
   timeout: 60000
 });
-const notificationStyle = (theme: MantineTheme) => ({
+export const notificationStyle = (theme: MantineTheme) => ({
   root: {
     backgroundColor: theme.colors.red[6],
     borderColor: theme.colors.red[6],

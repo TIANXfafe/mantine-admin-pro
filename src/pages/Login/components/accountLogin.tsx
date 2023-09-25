@@ -8,8 +8,12 @@ import {
 import { useForm } from '@mantine/form';
 import { IconUser, IconLock } from '@tabler/icons-react';
 import { ILoginParams } from '@/services/apis/user.ts';
+import { useAppDispatch, useAppSelector } from '@/utils/hooks/useAppStore.ts';
+import { userLoginAsync } from '@/redux/reducers/user.ts';
+import { useNavigate } from 'react-router-dom';
 
 const AccountLogin = () => {
+  const navigate = useNavigate();
   const form = useForm({
     initialValues: {
       account: '',
@@ -23,8 +27,17 @@ const AccountLogin = () => {
     }
   });
 
+  const dispatch = useAppDispatch();
+  const { loading } = useAppSelector((state) => state.user);
+
   const handleLogin = async (values: ILoginParams) => {
-    console.log(values);
+    values.type = 'account';
+    const res = await dispatch(userLoginAsync(values));
+    if (res.type.includes('rejected')) {
+      form.setFieldValue('password', '');
+      return;
+    }
+    navigate('/home', { replace: true });
   };
 
   return (
@@ -52,7 +65,7 @@ const AccountLogin = () => {
           {...form.getInputProps('autoLogin', { type: 'checkbox' })}
         />
 
-        <Button type="submit" fullWidth mt="10px">
+        <Button type="submit" fullWidth mt="10px" loading={loading}>
           登录
         </Button>
       </Stack>

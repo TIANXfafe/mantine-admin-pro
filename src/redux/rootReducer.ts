@@ -1,7 +1,9 @@
 import app from './reducers/app.ts';
+import user from './reducers/user.ts';
 
 const rootReducer = {
-  app
+  app,
+  user
 };
 
 export default rootReducer;

@@ -7,6 +7,7 @@ import { Toaster } from 'react-hot-toast';
 import store from '@/redux';
 import '@/locales';
 import '@/assets/styles/index.css';
+import '@/mock';
 
 // ** Lazy load app
 const LazyApp = lazy(() => import('./App'));

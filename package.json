@@ -45,6 +45,7 @@
     "react-router-dom": "^6.16.0"
   },
   "devDependencies": {
+    "@types/mockjs": "^1.0.7",
     "@types/node": "^20.6.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
@@ -63,6 +64,7 @@
     "i18next-browser-languagedetector": "^7.1.0",
     "i18next-http-backend": "^2.2.2",
     "lint-staged": "^14.0.1",
+    "mockjs": "^1.1.0",
     "prettier": "^3.0.3",
     "react-i18next": "^13.2.2",
     "rollup-plugin-visualizer": "^5.9.2",
