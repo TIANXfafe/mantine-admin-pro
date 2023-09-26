@@ -2,11 +2,13 @@
 import { lazy } from 'react';
 
 // ** Router imports
-import { useRoutes } from 'react-router-dom';
+import { Navigate, useRoutes } from 'react-router-dom';
 
 // ** Layouts
-import BaseLayout from '@/layout/BaseLayout';
 import BlankLayout from '@/layout/BlankLayout';
+
+// ** Routes
+import { DefaultRoute, getRoutes } from './routes';
 
 // ** Components
 const Login = lazy(() => import('@/pages/Login'));
@@ -14,11 +16,22 @@ const DefaultError = lazy(() => import('@/pages/Error/DefaultError'));
 const NotAuthorized = lazy(() => import('@/pages/Error/NotAuthorized'));
 
 const Router = () => {
-  const routes = useRoutes([
+  const allRoutes = getRoutes();
+
+  const getHomeRoute = () => {
+    const user = true;
+    if (user) {
+      return DefaultRoute;
+    } else {
+      return '/login';
+    }
+  };
+
+  return useRoutes([
     {
       path: '/',
       index: true,
-      element: <BaseLayout />
+      element: <Navigate replace to={getHomeRoute()} />
     },
     {
       path: '/login',
@@ -34,10 +47,9 @@ const Router = () => {
       path: '*',
       element: <BlankLayout />,
       children: [{ path: '*', element: <DefaultError /> }]
-    }
+    },
+    ...allRoutes
   ]);
-
-  return routes;
 };
 
 export default Router;

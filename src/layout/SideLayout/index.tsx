@@ -1,12 +1,14 @@
-import { FC } from 'react';
+// ** Route
 import { Outlet } from 'react-router-dom';
+
+// ** Mantine
 import { AppShell, Box } from '@mantine/core';
+
+// ** Components
 import LayoutHeader from '@/layout/Common/layoutHeader.tsx';
 import LayoutSide from '@/layout/Common/layoutSide.tsx';
 
-interface IProps {}
-
-const SideLayout: FC<IProps> = () => {
+const SideLayout = () => {
   return (
     <AppShell
       padding={0}

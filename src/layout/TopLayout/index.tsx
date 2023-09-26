@@ -1,11 +1,13 @@
-import { FC } from 'react';
+// ** Route
 import { Outlet } from 'react-router-dom';
+
+// ** Mantine
 import { AppShell, Box } from '@mantine/core';
+
+// ** Components
 import LayoutHeader from '@/layout/Common/layoutHeader.tsx';
 
-interface IProps {}
-
-const TopLayout: FC<IProps> = () => {
+const TopLayout = () => {
   return (
     <AppShell
       padding={0}

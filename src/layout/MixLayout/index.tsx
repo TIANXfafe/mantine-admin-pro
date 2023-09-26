@@ -1,18 +1,16 @@
-import { FC } from 'react';
+// ** Route
 import { Outlet } from 'react-router-dom';
-import { AppShell, Box, Button } from '@mantine/core';
-import { changeLanguage } from 'i18next';
+
+// ** Mantine
+import { AppShell, Box } from '@mantine/core';
+
+// ** Components
 import LayoutHeader from '@/layout/Common/layoutHeader.tsx';
 import LayoutSide from '@/layout/Common/layoutSide.tsx';
-import { loginApi } from '@/services/apis/user.ts';
 
-interface IProps {}
+// import { changeLanguage } from 'i18next';
 
-const MixLayout: FC<IProps> = () => {
-  const handleLogin = async () => {
-    await loginApi({});
-  };
-
+const MixLayout = () => {
   return (
     <AppShell
       padding={0}
@@ -28,9 +26,8 @@ const MixLayout: FC<IProps> = () => {
       })}
     >
       <Box sx={{ height: '100%' }}>
-        <Button onClick={() => changeLanguage('zh')}>切换中文</Button>
-        <Button onClick={() => changeLanguage('en')}>切换英文</Button>
-        <Button onClick={handleLogin}>Login</Button>
+        {/*<Button onClick={() => changeLanguage('zh')}>切换中文</Button>*/}
+        {/*<Button onClick={() => changeLanguage('en')}>切换英文</Button>*/}
         <Outlet />
       </Box>
     </AppShell>
