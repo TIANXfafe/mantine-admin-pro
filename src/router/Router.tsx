@@ -8,7 +8,7 @@ import { Navigate, useRoutes } from 'react-router-dom';
 import BlankLayout from '@/layout/BlankLayout';
 
 // ** Routes
-import { DefaultRoute, getRoutes } from './routes';
+import { DefaultRoute, getRoutes } from './guardRoutes';
 
 // ** Components
 const Login = lazy(() => import('@/pages/Login'));

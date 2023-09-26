@@ -56,7 +56,7 @@ const MobileLogin = () => {
       form.setFieldValue('captcha', '');
       return;
     }
-    navigate('/home', { replace: true });
+    navigate('/', { replace: true });
   };
 
   useEffect(() => {

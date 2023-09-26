@@ -37,7 +37,7 @@ const AccountLogin = () => {
       form.setFieldValue('password', '');
       return;
     }
-    navigate('/home', { replace: true });
+    navigate('/', { replace: true });
   };
 
   return (

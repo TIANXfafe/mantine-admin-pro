@@ -3,7 +3,8 @@ import BlankLayout from '@/layout/BlankLayout';
 import BaseLayout from '@/layout/BaseLayout';
 
 // ** Routes
-import DashboardRoutes from '@/router/routes/Dashboards.tsx';
+import DashboardRoutes from '@/router/guardRoutes/Dashboards.tsx';
+import GuardRoute from '@/components/GuardRoute.tsx';
 
 // ** Default Route
 const DefaultRoute = '/dashboard/workplace';
@@ -18,6 +19,7 @@ const getRoutes = () => {
   const BlankRoutes: any[] = [];
   if (Routes && Routes.length) {
     Routes.forEach((route) => {
+      route.element = <GuardRoute>{route.element}</GuardRoute>;
       if (route.meta && route.meta.layout === false) {
         BlankRoutes.push(route);
       } else {

@@ -4,7 +4,7 @@ import { MantineProvider, useMantineTheme } from '@mantine/core';
 import { useAppDispatch, useAppSelector } from '@/utils/hooks/useAppStore.ts';
 import { useLocation } from 'react-router-dom';
 import { flattenTree } from '@/utils/methods/tree.ts';
-import { getRoutes } from '@/router/routes';
+import { getRoutes } from '@/router/guardRoutes';
 
 const App = () => {
   const location = useLocation();
@@ -23,7 +23,7 @@ const App = () => {
       (item: IRoute) => item.path === location.pathname
     );
     let title = layout.title;
-    if (curRoute.meta?.title) {
+    if (curRoute && curRoute.meta && curRoute.meta.title) {
       title = `${title} - ${curRoute.meta.title}`;
     }
     document.title = title!;
