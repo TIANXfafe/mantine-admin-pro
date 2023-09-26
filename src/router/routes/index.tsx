@@ -5,9 +5,6 @@ import BaseLayout from '@/layout/BaseLayout';
 // ** Routes
 import DashboardRoutes from '@/router/routes/Dashboards.tsx';
 
-// ** Utils
-import { isObjEmpty } from '@/utils/methods/utils.ts';
-
 // ** Default Route
 const DefaultRoute = '/dashboard/workplace';
 
@@ -21,14 +18,10 @@ const getRoutes = () => {
   const BlankRoutes: any[] = [];
   if (Routes && Routes.length) {
     Routes.forEach((route) => {
-      if (
-        !route.meta ||
-        (route.meta && isObjEmpty(route.meta)) ||
-        route.meta.layout
-      ) {
-        BaseRoutes.push(route);
-      } else {
+      if (route.meta && route.meta.layout === false) {
         BlankRoutes.push(route);
+      } else {
+        BaseRoutes.push(route);
       }
     });
   }

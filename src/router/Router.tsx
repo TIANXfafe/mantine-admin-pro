@@ -1,5 +1,5 @@
 // ** React imports
-import { lazy } from 'react';
+import { lazy, ReactNode } from 'react';
 
 // ** Router imports
 import { Navigate, useRoutes } from 'react-router-dom';
@@ -14,6 +14,17 @@ import { DefaultRoute, getRoutes } from './routes';
 const Login = lazy(() => import('@/pages/Login'));
 const DefaultError = lazy(() => import('@/pages/Error/DefaultError'));
 const NotAuthorized = lazy(() => import('@/pages/Error/NotAuthorized'));
+
+export interface IRoute {
+  path: string;
+  element?: ReactNode;
+  index?: boolean;
+  meta?: {
+    layout?: boolean;
+    title?: string;
+  };
+  children?: IRoute[];
+}
 
 const Router = () => {
   const allRoutes = getRoutes();
