@@ -1,5 +1,6 @@
 import { IResponseBody } from './../index';
 import { request } from '@/services';
+import { IUserInfo } from '@/redux/reducers/user.ts';
 
 export interface ILoginParams {
   account?: string;
@@ -31,4 +32,10 @@ export const sendCaptchaApi: (data: {
     url: '/user/sendCaptcha',
     method: 'POST',
     data
+  });
+// 获取用户信息
+export const getUserInfoApi: () => Promise<IResponseBody<IUserInfo>> = () =>
+  request({
+    url: '/user/info',
+    method: 'POST'
   });

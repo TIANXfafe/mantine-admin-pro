@@ -1,11 +1,30 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { ILoginParams, loginApi } from '@/services/apis/user.ts';
+import {
+  getUserInfoApi,
+  ILoginParams,
+  loginApi
+} from '@/services/apis/user.ts';
 import toast from 'react-hot-toast';
 import { notifications } from '@mantine/notifications';
 import { notificationStyle } from '@/services';
 
+export interface IUserInfo {
+  id: string;
+  account: string;
+  mobile: string | number;
+  password: string;
+  nickname: string;
+  gender: 0 | 1 | '0' | '1' | null | ''; // 0 男  1 女
+  address: string;
+  avatar: string;
+  role: string; // user 普通用户  admin 管理员
+  status: 0 | 1 | 2 | '0' | '1' | '2' | null | ''; // 0 未激活  1 激活  2 封禁
+  createdAt: string | number;
+  updatedAt: string | number;
+}
+
 export interface IUserState {
-  userInfo: null | { [key: string]: any };
+  userInfo: null | IUserInfo;
   accessToken: string | null;
   loading: boolean;
   error: string | null;
@@ -24,6 +43,7 @@ export const userLoginAsync = createAsyncThunk(
     try {
       const res: any = await loginApi(formData);
       if (res.code === 0) {
+        localStorage.setItem('accessToken', res.data.accessToken);
         return res.data;
       } else {
         return thunkAPI.rejectWithValue({ error: res.msg });
@@ -35,12 +55,32 @@ export const userLoginAsync = createAsyncThunk(
   }
 );
 
+export const getUserInfoAsync = createAsyncThunk(
+  'user/getUserInfoAsync',
+  async (_, thunkAPI) => {
+    try {
+      const res = await getUserInfoApi();
+      if (res.code === 0) {
+        thunkAPI.dispatch(setUserInfo(res.data));
+      } else {
+        return thunkAPI.rejectWithValue({ error: res.msg });
+      }
+    } catch (err) {
+      return thunkAPI.rejectWithValue({ error: err.message });
+    }
+  }
+);
+
 export const useSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setToken(state, action) {
+    setToken: (state, action) => {
       state.accessToken = action.payload;
+    },
+    setUserInfo: (state, action) => {
+      state.userInfo = action.payload;
+      localStorage.setItem('userInfo', JSON.stringify(action.payload));
     }
   },
   extraReducers: (builder) => {
@@ -66,6 +106,6 @@ export const useSlice = createSlice({
   }
 });
 
-export const { setToken } = useSlice.actions;
+export const { setToken, setUserInfo } = useSlice.actions;
 
 export default useSlice.reducer;

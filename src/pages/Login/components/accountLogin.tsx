@@ -9,7 +9,7 @@ import { useForm } from '@mantine/form';
 import { IconUser, IconLock } from '@tabler/icons-react';
 import { ILoginParams } from '@/services/apis/user.ts';
 import { useAppDispatch, useAppSelector } from '@/utils/hooks/useAppStore.ts';
-import { userLoginAsync } from '@/redux/reducers/user.ts';
+import { getUserInfoAsync, userLoginAsync } from '@/redux/reducers/user.ts';
 import { useNavigate } from 'react-router-dom';
 
 const AccountLogin = () => {
@@ -38,6 +38,7 @@ const AccountLogin = () => {
       return;
     }
     navigate('/', { replace: true });
+    await dispatch(getUserInfoAsync());
   };
 
   return (

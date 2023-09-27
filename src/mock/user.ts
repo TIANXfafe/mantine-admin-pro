@@ -88,5 +88,26 @@ setupMock({
         };
       }
     });
+
+    Mock.mock(new RegExp('/api/user/info'), 'post', () => {
+      return {
+        code: 0,
+        data: {
+          id: 'dh9wqahdh03wahjd0awhq0juaudghb0ahywd0haw',
+          account: 'admin',
+          mobile: 18888888888,
+          password: 'admin',
+          nickname: '管理员',
+          gender: 0, // 0 男  1
+          address: '',
+          avatar: '',
+          role: 'admin', // user 普通用户  admin 管理
+          status: 1, // 0 未激活  1 激活  2 封
+          createdAt: new Date().getTime(),
+          updatedAt: new Date().getTime()
+        },
+        msg: 'OK'
+      };
+    });
   }
 });

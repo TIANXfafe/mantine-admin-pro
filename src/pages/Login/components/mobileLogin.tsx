@@ -5,7 +5,7 @@ import { isPhone } from '@/utils/methods/regTest.ts';
 import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { sendCaptchaApi } from '@/services/apis/user';
-import { userLoginAsync } from '@/redux/reducers/user.ts';
+import { getUserInfoAsync, userLoginAsync } from '@/redux/reducers/user.ts';
 import { useAppDispatch, useAppSelector } from '@/utils/hooks/useAppStore.ts';
 import { useNavigate } from 'react-router-dom';
 
@@ -57,6 +57,7 @@ const MobileLogin = () => {
       return;
     }
     navigate('/', { replace: true });
+    await dispatch(getUserInfoAsync());
   };
 
   useEffect(() => {
