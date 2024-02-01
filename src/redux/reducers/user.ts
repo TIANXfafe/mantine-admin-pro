@@ -82,9 +82,9 @@ export const useSlice = createSlice({
       state.userInfo = action.payload;
       localStorage.setItem('userInfo', JSON.stringify(action.payload));
     },
-    logout: () => {
-      setToken(null);
-      setUserInfo(null);
+    logout: (state) => {
+      state.accessToken = null;
+      state.userInfo = null;
       localStorage.removeItem('userInfo');
       localStorage.removeItem('accessToken');
     }
