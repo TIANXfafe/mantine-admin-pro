@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   ILayoutTheme,
   ILayoutType,
+  IlocaleType,
   layoutTheme
 } from '@/config/layoutTheme.ts';
 
@@ -11,6 +12,7 @@ interface IInitialState {
   layoutList: ILayoutType[];
   layoutStyleList: ILayoutType[];
   collapsed: boolean;
+  localeOptions: IlocaleType[];
 }
 
 const layoutList: ILayoutType[] = [
@@ -46,13 +48,26 @@ const layoutStyleList: ILayoutType[] = [
     dark: true
   }
 ];
+const localeOptions: IlocaleType[] = [
+  {
+    label: '简体中文',
+    key: 'zh',
+    icon: '🇨🇳'
+  },
+  {
+    label: 'English',
+    key: 'en',
+    icon: '🇺🇸'
+  }
+];
 
 const initialState: IInitialState = {
   layout: layoutTheme,
   colorList: {},
   layoutList,
   layoutStyleList,
-  collapsed: false
+  collapsed: false,
+  localeOptions
 };
 
 export const layoutSlice = createSlice({

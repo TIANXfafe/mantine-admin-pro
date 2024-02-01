@@ -1,3 +1,6 @@
+// ** React
+import { FC, ReactElement } from 'react';
+
 // ** Route
 import { Outlet } from 'react-router-dom';
 
@@ -10,11 +13,15 @@ import LayoutSide from '@/layout/Common/layoutSide.tsx';
 
 // import { changeLanguage } from 'i18next';
 
-const MixLayout = () => {
+interface IProps {
+  headerRight?: ReactElement | string;
+}
+
+const MixLayout: FC<IProps> = ({ headerRight }) => {
   return (
     <AppShell
       padding={0}
-      header={<LayoutHeader>Header</LayoutHeader>}
+      header={<LayoutHeader>{headerRight}</LayoutHeader>}
       navbar={<LayoutSide>Navbar</LayoutSide>}
       styles={(theme) => ({
         main: {

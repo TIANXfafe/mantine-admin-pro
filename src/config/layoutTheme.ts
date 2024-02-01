@@ -27,6 +27,12 @@ export interface ILayoutTheme {
   logo: string;
 }
 
+export interface IlocaleType {
+  label: string;
+  key: string;
+  icon: string;
+}
+
 export const layoutTheme: ILayoutTheme = {
   title: 'Mantine Admin Pro',
   layout: 'mix',

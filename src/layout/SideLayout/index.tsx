@@ -1,3 +1,6 @@
+// ** React
+import { FC, ReactElement } from 'react';
+
 // ** Route
 import { Outlet } from 'react-router-dom';
 
@@ -8,12 +11,16 @@ import { AppShell, Box } from '@mantine/core';
 import LayoutHeader from '@/layout/Common/layoutHeader.tsx';
 import LayoutSide from '@/layout/Common/layoutSide.tsx';
 
-const SideLayout = () => {
+interface IProps {
+  headerRight?: ReactElement | string;
+}
+
+const SideLayout: FC<IProps> = ({ headerRight }) => {
   return (
     <AppShell
       padding={0}
       layout="alt"
-      header={<LayoutHeader>Header</LayoutHeader>}
+      header={<LayoutHeader>{headerRight}</LayoutHeader>}
       navbar={<LayoutSide>Navbar</LayoutSide>}
       styles={(theme) => ({
         main: {

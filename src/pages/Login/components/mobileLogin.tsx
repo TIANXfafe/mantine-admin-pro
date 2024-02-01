@@ -30,8 +30,8 @@ const MobileLogin = () => {
         !value
           ? '请输入验证码'
           : value.toString().length !== 6
-          ? '验证码格式错误'
-          : null
+            ? '验证码格式错误'
+            : null
     }
   });
 

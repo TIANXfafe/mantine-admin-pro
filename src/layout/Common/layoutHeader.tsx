@@ -16,7 +16,10 @@ const useStyles = createStyles({
     alignItems: 'center',
     overflow: 'hidden'
   },
-  headerRight: {}
+  headerRight: {
+    display: 'flex',
+    alignItems: 'center'
+  }
 });
 
 const LayoutHeader: FC<IProps> = ({ children }) => {

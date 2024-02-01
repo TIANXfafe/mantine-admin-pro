@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '@/utils/hooks/useAppStore.ts';
 import { useLocation } from 'react-router-dom';
 import { flattenTree } from '@/utils/methods/tree.ts';
 import { getRoutes } from '@/router/guardRoutes';
+import { setThemeColor } from './redux/reducers/app';
 
 const App = () => {
   const location = useLocation();
@@ -14,7 +15,7 @@ const App = () => {
   const allRoutes = getRoutes();
 
   useEffect(() => {
-    dispatch({ type: 'app/setThemeColor', payload: theme.colors });
+    dispatch(setThemeColor(theme.colors));
   }, []);
 
   useEffect(() => {

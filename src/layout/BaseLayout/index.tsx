@@ -12,6 +12,7 @@ import SideLayout from '@/layout/SideLayout';
 import TopLayout from '@/layout/TopLayout';
 import MobileLayout from '@/layout/MobileLayout';
 import SettingDrawer from '@/layout/SettingDrawer';
+import RightContent from './RightContent';
 import { useQueryBreakpoints } from '@/utils/hooks/useQueryBreakpoint.tsx';
 
 export const LayoutContext: Context<{
@@ -42,11 +43,11 @@ const BaseLayout = () => {
       return <MobileLayout />;
     } else {
       if (layout.layout === 'mix') {
-        return <MixLayout />;
+        return <MixLayout headerRight={<RightContent />} />;
       } else if (layout.layout === 'side') {
-        return <SideLayout />;
+        return <SideLayout headerRight={<RightContent />} />;
       } else if (layout.layout === 'top') {
-        return <TopLayout />;
+        return <TopLayout headerRight={<RightContent />} />;
       }
     }
   };

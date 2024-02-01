@@ -17,7 +17,7 @@ i18n
   .use(initReactI18next)
   .init({
     fallbackLng: 'zh',
-    lng: 'zh',
+    lng: localStorage.getItem('i18nextLng') || 'zh',
     debug: false,
     backend: {
       loadPath: (lng: 'zh' | 'en') => languages[lng]
