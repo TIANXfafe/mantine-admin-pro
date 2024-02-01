@@ -81,6 +81,12 @@ export const useSlice = createSlice({
     setUserInfo: (state, action) => {
       state.userInfo = action.payload;
       localStorage.setItem('userInfo', JSON.stringify(action.payload));
+    },
+    logout: () => {
+      setToken(null);
+      setUserInfo(null);
+      localStorage.removeItem('userInfo');
+      localStorage.removeItem('accessToken');
     }
   },
   extraReducers: (builder) => {
@@ -106,6 +112,6 @@ export const useSlice = createSlice({
   }
 });
 
-export const { setToken, setUserInfo } = useSlice.actions;
+export const { setToken, setUserInfo, logout } = useSlice.actions;
 
 export default useSlice.reducer;

@@ -22,7 +22,10 @@
     "layout.setting.drawer.theme.red": "薄暮红",
     "layout.setting.drawer.theme.teal": "蓝绿色",
     "layout.setting.drawer.theme.violet": "酱紫",
-    "layout.setting.drawer.theme.yellow": "柠檬黄"
+    "layout.setting.drawer.theme.yellow": "柠檬黄",
+    "layout.header.right.user.center": "用户中心",
+    "layout.header.right.user.setting": "个人设置",
+    "layout.header.right.logout": "退出登录"
   },
   "pages": {
     "login": {

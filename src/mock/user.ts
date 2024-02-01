@@ -100,7 +100,8 @@ setupMock({
           nickname: '管理员',
           gender: 0, // 0 男  1
           address: '',
-          avatar: '',
+          avatar:
+            'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80',
           role: 'admin', // user 普通用户  admin 管理
           status: 1, // 0 未激活  1 激活  2 封
           createdAt: new Date().getTime(),

@@ -22,7 +22,10 @@
     "layout.setting.drawer.theme.red": "red",
     "layout.setting.drawer.theme.teal": "teal",
     "layout.setting.drawer.theme.violet": "violet",
-    "layout.setting.drawer.theme.yellow": "yellow"
+    "layout.setting.drawer.theme.yellow": "yellow",
+    "layout.header.right.user.center": "User Center",
+    "layout.header.right.user.setting": "User Setting",
+    "layout.header.right.logout": "Logout"
   },
   "pages": {
     "login": {
