@@ -1,0 +1,44 @@
+{
+  "global": {
+    "layout.setting.drawer.style": "整体风格设置",
+    "layout.setting.drawer.style.light": "亮色菜单风格",
+    "layout.setting.drawer.style.inverted": "反转色菜单风格",
+    "layout.setting.drawer.style.dark": "黑暗菜单风格",
+    "layout.setting.drawer.layout": "导航模式",
+    "layout.setting.drawer.layout.mix": "混合菜单布局",
+    "layout.setting.drawer.layout.side": "侧边菜单布局",
+    "layout.setting.drawer.layout.top": "顶部菜单布局",
+    "layout.setting.drawer.theme": "主题色",
+    "layout.setting.drawer.theme.blue": "拂晓蓝",
+    "layout.setting.drawer.theme.cyan": "明青",
+    "layout.setting.drawer.theme.dark": "幻影黑",
+    "layout.setting.drawer.theme.grape": "葡萄紫",
+    "layout.setting.drawer.theme.gray": "纳多灰",
+    "layout.setting.drawer.theme.green": "极光绿",
+    "layout.setting.drawer.theme.indigo": "靛蓝",
+    "layout.setting.drawer.theme.lime": "青翠绿",
+    "layout.setting.drawer.theme.orange": "日暮",
+    "layout.setting.drawer.theme.pink": "洋红",
+    "layout.setting.drawer.theme.red": "薄暮红",
+    "layout.setting.drawer.theme.teal": "蓝绿色",
+    "layout.setting.drawer.theme.violet": "酱紫",
+    "layout.setting.drawer.theme.yellow": "柠檬黄"
+  },
+  "pages": {
+    "login": {
+      "account.tab": "账号登录",
+      "account.label": "账号",
+      "account.placeholder": "账号：admin",
+      "password.label": "密码",
+      "password.placeholder": "密码：admin",
+      "remember-me": "自动登录",
+      "login": "登录",
+      "mobile.tab": "手机号登录",
+      "mobile.label": "手机号",
+      "mobile.placeholder": "手机号",
+      "captcha.label": "验证码",
+      "captcha.placeholder": "验证码",
+      "captcha.send": "发送验证码"
+    }
+  }
+}

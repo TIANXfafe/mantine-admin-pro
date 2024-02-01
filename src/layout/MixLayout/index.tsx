@@ -11,8 +11,6 @@ import { AppShell, Box } from '@mantine/core';
 import LayoutHeader from '@/layout/Common/layoutHeader.tsx';
 import LayoutSide from '@/layout/Common/layoutSide.tsx';
 
-// import { changeLanguage } from 'i18next';
-
 interface IProps {
   headerRight?: ReactElement | string;
 }
@@ -33,8 +31,6 @@ const MixLayout: FC<IProps> = ({ headerRight }) => {
       })}
     >
       <Box sx={{ height: '100%' }}>
-        {/*<Button onClick={() => changeLanguage('zh')}>切换中文</Button>*/}
-        {/*<Button onClick={() => changeLanguage('en')}>切换英文</Button>*/}
         <Outlet />
       </Box>
     </AppShell>

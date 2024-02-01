@@ -11,9 +11,11 @@ import { ILoginParams } from '@/services/apis/user.ts';
 import { useAppDispatch, useAppSelector } from '@/utils/hooks/useAppStore.ts';
 import { getUserInfoAsync, userLoginAsync } from '@/redux/reducers/user.ts';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const AccountLogin = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const form = useForm({
     initialValues: {
       account: '',
@@ -46,28 +48,28 @@ const AccountLogin = () => {
       <Stack spacing="xs">
         <TextInput
           withAsterisk
-          label="账号"
-          placeholder="admin"
+          label={t('pages.login.account.label')}
+          placeholder={t('pages.login.account.placeholder')}
           icon={<IconUser size="1rem" />}
           {...form.getInputProps('account')}
         />
 
         <PasswordInput
           withAsterisk
-          label="密码"
-          placeholder="admin"
+          label={t('pages.login.password.label')}
+          placeholder={t('pages.login.password.placeholder')}
           icon={<IconLock size="1rem" />}
           {...form.getInputProps('password')}
         />
 
         <Checkbox
           mt="md"
-          label="自动登录"
+          label={t('pages.login.remember-me')}
           {...form.getInputProps('autoLogin', { type: 'checkbox' })}
         />
 
         <Button type="submit" fullWidth mt="10px" loading={loading}>
-          登录
+          {t('pages.login.login')}
         </Button>
       </Stack>
     </form>

@@ -19,7 +19,7 @@ const SelectLang = () => {
   return (
     <Menu
       position="bottom-end"
-      offset={15}
+      offset={10}
       withArrow
       arrowPosition="center"
       trigger="hover"

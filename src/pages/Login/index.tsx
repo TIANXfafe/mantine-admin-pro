@@ -15,9 +15,11 @@ import Logo from '@/layout/Common/logo.tsx';
 import CustomTitle from '@/layout/Common/title.tsx';
 import AccountLogin from './components/accountLogin.tsx';
 import MobileLogin from '@/pages/Login/components/mobileLogin.tsx';
+import { useTranslation } from 'react-i18next';
 
 const Index = () => {
   const theme = useMantineTheme();
+  const { t } = useTranslation();
   const { layout } = useAppSelector((state) => state.app);
 
   const [value, setValue] = useState('account');
@@ -57,7 +59,7 @@ const Index = () => {
                   label: (
                     <Center>
                       <IconUser size="1rem" />
-                      <Box ml={10}>账号登录</Box>
+                      <Box ml={10}>{t('pages.login.account.tab')}</Box>
                     </Center>
                   )
                 },
@@ -66,7 +68,7 @@ const Index = () => {
                   label: (
                     <Center>
                       <IconDeviceMobile size="1rem" />
-                      <Box ml={10}>手机号登录</Box>
+                      <Box ml={10}>{t('pages.login.mobile.tab')}</Box>
                     </Center>
                   )
                 }

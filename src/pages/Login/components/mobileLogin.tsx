@@ -8,11 +8,13 @@ import { sendCaptchaApi } from '@/services/apis/user';
 import { getUserInfoAsync, userLoginAsync } from '@/redux/reducers/user.ts';
 import { useAppDispatch, useAppSelector } from '@/utils/hooks/useAppStore.ts';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const MobileLogin = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { loading } = useAppSelector((state) => state.user);
+  const { t } = useTranslation();
 
   const [reSendSeconds, setReSendSeconds] = useState<number>(0);
 
@@ -79,8 +81,8 @@ const MobileLogin = () => {
       <Stack spacing="xs">
         <NumberInput
           withAsterisk
-          label="手机号"
-          placeholder="admin"
+          label={t('pages.login.mobile.label')}
+          placeholder={t('pages.login.mobile.placeholder')}
           icon={<IconDeviceMobile size="1rem" />}
           {...form.getInputProps('mobile')}
         />
@@ -92,24 +94,26 @@ const MobileLogin = () => {
         >
           <NumberInput
             withAsterisk
-            label="密码"
-            placeholder="admin"
+            label={t('pages.login.captcha.label')}
+            placeholder={t('pages.login.captcha.placeholder')}
             icon={<IconLock size="1rem" />}
             {...form.getInputProps('captcha')}
           />
           <Button onClick={sendCaptcha} disabled={reSendSeconds !== 0}>
-            {reSendSeconds !== 0 ? `${reSendSeconds}s` : '发送验证码'}
+            {reSendSeconds !== 0
+              ? `${reSendSeconds}s`
+              : t('pages.login.captcha.send')}
           </Button>
         </Group>
 
         <Checkbox
           mt="md"
-          label="自动登录"
+          label={t('pages.login.remember-me')}
           {...form.getInputProps('autoLogin', { type: 'checkbox' })}
         />
 
         <Button type="submit" fullWidth mt="10px" loading={loading}>
-          登录
+          {t('pages.login.login')}
         </Button>
       </Stack>
     </form>

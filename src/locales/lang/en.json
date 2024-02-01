@@ -1,0 +1,44 @@
+{
+  "global": {
+    "layout.setting.drawer.style": "Page style setting",
+    "layout.setting.drawer.style.light": "Light menu style",
+    "layout.setting.drawer.style.inverted": "Inverted menu style",
+    "layout.setting.drawer.style.dark": "Dark menu style",
+    "layout.setting.drawer.layout": "Navigation mode",
+    "layout.setting.drawer.layout.mix": "Mix menu layout",
+    "layout.setting.drawer.layout.side": "Side menu layout",
+    "layout.setting.drawer.layout.top": "Top menu layout",
+    "layout.setting.drawer.theme": "Theme color",
+    "layout.setting.drawer.theme.blue": "blue",
+    "layout.setting.drawer.theme.cyan": "cyan",
+    "layout.setting.drawer.theme.dark": "dark",
+    "layout.setting.drawer.theme.grape": "grape",
+    "layout.setting.drawer.theme.gray": "gray",
+    "layout.setting.drawer.theme.green": "green",
+    "layout.setting.drawer.theme.indigo": "indigo",
+    "layout.setting.drawer.theme.lime": "lime",
+    "layout.setting.drawer.theme.orange": "orange",
+    "layout.setting.drawer.theme.pink": "pink",
+    "layout.setting.drawer.theme.red": "red",
+    "layout.setting.drawer.theme.teal": "teal",
+    "layout.setting.drawer.theme.violet": "violet",
+    "layout.setting.drawer.theme.yellow": "yellow"
+  },
+  "pages": {
+    "login": {
+      "account.tab": "Account Login",
+      "account.label": "Account",
+      "account.placeholder": "Account:admin",
+      "password.label": "Password",
+      "password.placeholder": "Password:admin",
+      "remember-me": "Remember me",
+      "login": "Login",
+      "mobile.tab": "Mobile Login",
+      "mobile.label": "Mobile number",
+      "mobile.placeholder": "Mobile number",
+      "captcha.label": "Captcha",
+      "captcha.placeholder": "Captcha",
+      "captcha.send": "Get code"
+    }
+  }
+}
