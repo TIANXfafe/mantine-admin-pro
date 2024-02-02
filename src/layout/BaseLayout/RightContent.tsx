@@ -1,12 +1,13 @@
-import { Group, Button } from '@mantine/core';
+import { Group } from '@mantine/core';
+import Notify from '../Notify';
 import SelectLang from '@/layout/SelectLang';
 import SelectUser from '../SelectUser';
 
 const RightContent = () => {
   return (
-    <Group spacing="md">
+    <Group spacing="lg">
+      <Notify />
       <SelectLang />
-      <Button>123</Button>
       <SelectUser />
     </Group>
   );

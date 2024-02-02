@@ -25,7 +25,16 @@
     "layout.setting.drawer.theme.yellow": "柠檬黄",
     "layout.header.right.user.center": "用户中心",
     "layout.header.right.user.setting": "个人设置",
-    "layout.header.right.logout": "退出登录"
+    "layout.header.right.logout": "退出登录",
+    "layout.header.right.notify.notice": "通知",
+    "layout.header.right.notify.message": "消息",
+    "layout.header.right.notify.todo": "待办",
+    "layout.header.right.notify.clear": "清空消息",
+    "layout.header.right.notify.more": "查看更多",
+    "layout.header.right.notify.not-start": "未开始",
+    "layout.header.right.notify.ongoing": "进行中",
+    "layout.header.right.notify.completed": "已完成",
+    "layout.header.right.notify.rejected": "已拒绝"
   },
   "pages": {
     "login": {

@@ -22,10 +22,11 @@ const SelectLang = () => {
       offset={10}
       withArrow
       arrowPosition="center"
-      trigger="hover"
+      trigger="click"
+      transitionProps={{ transition: 'scale', duration: 150 }}
     >
       <Menu.Target>
-        <IconLanguage width="1.2em" height="1.2em" />
+        <IconLanguage size={20} />
       </Menu.Target>
       <Menu.Dropdown>
         {localeOptions.map((item) => (

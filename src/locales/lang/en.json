@@ -25,7 +25,16 @@
     "layout.setting.drawer.theme.yellow": "yellow",
     "layout.header.right.user.center": "User Center",
     "layout.header.right.user.setting": "User Setting",
-    "layout.header.right.logout": "Logout"
+    "layout.header.right.logout": "Logout",
+    "layout.header.right.notify.notice": "Notice",
+    "layout.header.right.notify.message": "Message",
+    "layout.header.right.notify.todo": "Todo",
+    "layout.header.right.notify.clear": "Clear all",
+    "layout.header.right.notify.more": "See more",
+    "layout.header.right.notify.not-start": "Not start",
+    "layout.header.right.notify.ongoing": "Ongoing",
+    "layout.header.right.notify.completed": "Completed",
+    "layout.header.right.notify.rejected": "Rejected"
   },
   "pages": {
     "login": {

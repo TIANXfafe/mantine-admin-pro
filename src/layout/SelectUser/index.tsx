@@ -51,7 +51,8 @@ const SelectUser = () => {
       offset={10}
       withArrow
       arrowPosition="center"
-      trigger="hover"
+      trigger="click"
+      transitionProps={{ transition: 'scale', duration: 150 }}
     >
       <Menu.Target>
         <Flex gap="xs" align="center">
