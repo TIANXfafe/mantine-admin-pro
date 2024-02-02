@@ -13,15 +13,16 @@ import LayoutSide from '@/layout/Common/layoutSide.tsx';
 
 interface IProps {
   headerRight?: ReactElement | string;
+  sideMenu?: ReactElement;
 }
 
-const SideLayout: FC<IProps> = ({ headerRight }) => {
+const SideLayout: FC<IProps> = ({ headerRight, sideMenu }) => {
   return (
     <AppShell
       padding={0}
       layout="alt"
       header={<LayoutHeader>{headerRight}</LayoutHeader>}
-      navbar={<LayoutSide>Navbar</LayoutSide>}
+      navbar={<LayoutSide>{sideMenu}</LayoutSide>}
       styles={(theme) => ({
         main: {
           backgroundColor:
