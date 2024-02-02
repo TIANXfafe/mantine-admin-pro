@@ -7,8 +7,6 @@ interface IProps {
 }
 
 const Container: FC<IProps> = ({ children }) => {
-  console.log('children', children);
-
   return (
     <Box>
       <ScrollArea h={280} scrollbarSize={4} scrollHideDelay={0}>

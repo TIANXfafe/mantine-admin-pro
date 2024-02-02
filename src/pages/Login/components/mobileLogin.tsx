@@ -51,7 +51,6 @@ const MobileLogin = () => {
   };
 
   const handleLogin = async (values: any) => {
-    console.log(values);
     values.type = 'mobile';
     const res = await dispatch(userLoginAsync(values));
     if (res.type.includes('rejected')) {
