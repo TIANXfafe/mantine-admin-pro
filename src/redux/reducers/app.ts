@@ -1,10 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {
   ILayoutTheme,
   ILayoutType,
   IlocaleType,
   layoutTheme
 } from '@/config/layoutTheme.ts';
+import MenuData, { TMenuItem } from '@/config/menu.ts';
+import { getMenuData } from '@/services/apis/menu.ts';
 
 interface IInitialState {
   layout: ILayoutTheme;
@@ -13,6 +15,7 @@ interface IInitialState {
   layoutStyleList: ILayoutType[];
   collapsed: boolean;
   localeOptions: IlocaleType[];
+  menuList: TMenuItem[];
 }
 
 const layoutList: ILayoutType[] = [
@@ -67,8 +70,25 @@ const initialState: IInitialState = {
   layoutList,
   layoutStyleList,
   collapsed: false,
-  localeOptions
+  localeOptions,
+  menuList: MenuData
 };
+
+export const setMenuAsync = createAsyncThunk(
+  'app/setMenuAsync',
+  async (_, thunkAPI) => {
+    try {
+      const res = await getMenuData();
+      if (res.code === 0) {
+        thunkAPI.dispatch(setMenu(res.data));
+      } else {
+        return thunkAPI.rejectWithValue({ error: res.msg });
+      }
+    } catch (err: any) {
+      return thunkAPI.rejectWithValue({ error: err.message });
+    }
+  }
+);
 
 export const layoutSlice = createSlice({
   name: 'app',
@@ -99,6 +119,10 @@ export const layoutSlice = createSlice({
     // 切换侧边栏收缩
     toggleCollapsed: (state, action) => {
       state.collapsed = action.payload;
+    },
+    // 设置菜单
+    setMenu: (state, action) => {
+      state.menuList = action.payload;
     }
   }
 });
@@ -108,7 +132,8 @@ export const {
   toggleLayoutStyle,
   setThemeColor,
   toggleThemeColor,
-  toggleCollapsed
+  toggleCollapsed,
+  setMenu
 } = layoutSlice.actions;
 
 export default layoutSlice.reducer;

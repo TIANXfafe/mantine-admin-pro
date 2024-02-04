@@ -12,6 +12,7 @@ import { useAppDispatch, useAppSelector } from '@/utils/hooks/useAppStore.ts';
 import { getUserInfoAsync, userLoginAsync } from '@/redux/reducers/user.ts';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { setMenuAsync } from '@/redux/reducers/app.ts';
 
 const AccountLogin = () => {
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ const AccountLogin = () => {
     }
     navigate('/', { replace: true });
     await dispatch(getUserInfoAsync());
+    await dispatch(setMenuAsync());
   };
 
   return (

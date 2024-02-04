@@ -48,7 +48,7 @@ export const userLoginAsync = createAsyncThunk(
       } else {
         return thunkAPI.rejectWithValue({ error: res.msg });
       }
-    } catch (err) {
+    } catch (err: any) {
       // console.log('err', err);
       return thunkAPI.rejectWithValue({ error: err.message });
     }
@@ -65,7 +65,7 @@ export const getUserInfoAsync = createAsyncThunk(
       } else {
         return thunkAPI.rejectWithValue({ error: res.msg });
       }
-    } catch (err) {
+    } catch (err: any) {
       return thunkAPI.rejectWithValue({ error: err.message });
     }
   }
@@ -105,7 +105,7 @@ export const useSlice = createSlice({
       state.loading = false;
       notifications.show({
         title: '登录失败',
-        message: payload.error,
+        message: (payload as any).error,
         styles: notificationStyle
       });
     });

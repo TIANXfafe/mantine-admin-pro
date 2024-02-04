@@ -1,25 +1,14 @@
-import { useEffect, useState } from 'react';
 import { ScrollArea } from '@mantine/core';
-import staticMenu, { TMenuItem } from '@/config/menu.ts';
-import { getMenuData } from '@/services/apis/menu.ts';
 import LinksGroup from './LinksGroup.tsx';
+import { useAppSelector } from '@/utils/hooks/useAppStore.ts';
 
 const SideMenu = () => {
-  const [menu, setMenu] = useState<TMenuItem[]>([]);
-  const initData = async () => {
-    const res = await getMenuData();
-    if (res.code !== 0) setMenu(staticMenu);
-    else setMenu(res.data!);
-  };
-
-  useEffect(() => {
-    initData().then();
-  }, []);
+  const { menuList } = useAppSelector((state) => state.app);
 
   return (
     <ScrollArea sx={{ overflow: 'visible' }}>
       <div>
-        {menu.map((item) => (
+        {menuList.map((item) => (
           <LinksGroup key={item.label} {...item} />
         ))}
       </div>
