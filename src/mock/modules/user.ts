@@ -1,6 +1,6 @@
 import Mock from 'mockjs';
 import setupMock from '@/utils/methods/setupMock.ts';
-import { isPhone } from '@/utils/methods/regTest';
+import { isPhone } from '@/utils/methods/regTest.ts';
 
 setupMock({
   setup: () => {

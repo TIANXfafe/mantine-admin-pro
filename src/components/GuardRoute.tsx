@@ -8,11 +8,8 @@ interface IProps {
 
 const GuardRoute: FC<IProps> = ({ children }) => {
   const { accessToken } = useAppSelector((state) => state.user);
-  if (accessToken) {
-    return <>{children}</>;
-  } else {
-    return <Navigate to="/login" />;
-  }
+  if (!accessToken) return <Navigate to="/login" />;
+  return <>{children}</>;
 };
 
 export default GuardRoute;

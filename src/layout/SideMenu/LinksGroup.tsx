@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, createElement } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Box,
@@ -8,9 +8,11 @@ import {
   rem,
   Text,
   ThemeIcon,
-  UnstyledButton
+  UnstyledButton,
+  Menu
 } from '@mantine/core';
 import { IconChevronRight } from '@tabler/icons-react';
+import * as IconList from '@tabler/icons-react';
 import type { MantineTheme } from '@mantine/core';
 import type { TMenuItem } from '@/config/menu.ts';
 import { useAppSelector } from '@/utils/hooks/useAppStore.ts';
@@ -28,16 +30,16 @@ const useStyles = createStyles(
         fontWeight: 500,
         display: 'block',
         textDecoration: 'none',
-        padding: `${xs} ${md}`,
-        marginLeft: xl,
+        padding: collapsed ? 0 : `${xs} ${md}`,
+        marginLeft: collapsed ? 0 : xl,
         fontSize: theme.fontSizes.sm,
         color: `${isDark ? theme.colors.dark[0] : theme.colors.gray[7]}`,
-        borderLeft: `1px solid ${
-          isDark ? theme.colors.dark[4] : theme.colors.gray[3]
-        }`,
+        borderLeft: collapsed
+          ? '0'
+          : `1px solid ${isDark ? theme.colors.dark[4] : theme.colors.gray[3]}`,
         cursor: 'pointer',
 
-        '&:hover': hover
+        '&:hover': collapsed ? null : hover
       },
       control: {
         fontWeight: 500,
@@ -54,7 +56,7 @@ const useStyles = createStyles(
 
 const LinksGroup: FC<TMenuItem> = ({
   label,
-  icon: Icon,
+  icon,
   link,
   initiallyOpened = false,
   children
@@ -85,34 +87,73 @@ const LinksGroup: FC<TMenuItem> = ({
     </Text>
   ));
 
-  return (
-    <>
+  if (collapsed) {
+    return children ? (
+      <Menu
+        trigger="hover"
+        position="right"
+        withArrow
+        transitionProps={{ transition: 'scale', duration: 150 }}
+      >
+        <Menu.Target>
+          <UnstyledButton onClick={handleNavigate} className={classes.control}>
+            <Group spacing={0}>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <ThemeIcon variant="light" size={26}>
+                  {icon &&
+                    createElement((IconList as any)[icon], { size: rem(12) })}
+                </ThemeIcon>
+              </Box>
+            </Group>
+          </UnstyledButton>
+        </Menu.Target>
+        <Menu.Dropdown>
+          {items.map((item, index) => (
+            <Menu.Item key={index}>{item}</Menu.Item>
+          ))}
+        </Menu.Dropdown>
+      </Menu>
+    ) : (
       <UnstyledButton onClick={handleNavigate} className={classes.control}>
         <Group spacing={0}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <ThemeIcon variant="light" size={collapsed ? 26 : 30}>
-              {Icon && <Icon sx={{ width: rem(18), height: rem(18) }} />}
+            <ThemeIcon variant="light" size={26}>
+              {icon &&
+                createElement((IconList as any)[icon], { size: rem(12) })}
             </ThemeIcon>
-            {!collapsed && <Box ml="md">{label}</Box>}
           </Box>
-          {hasChild && !collapsed && (
-            <IconChevronRight
-              className={classes.chevron}
-              stroke={1.5}
-              style={{
-                width: rem(16),
-                height: rem(16),
-                transform: opened ? 'rotate(-90deg)' : 'none'
-              }}
-            />
-          )}
         </Group>
       </UnstyledButton>
-      {hasChild && !collapsed ? (
-        <Collapse in={!collapsed ? opened : false}>{items}</Collapse>
-      ) : null}
-    </>
-  );
+    );
+  } else {
+    return (
+      <>
+        <UnstyledButton onClick={handleNavigate} className={classes.control}>
+          <Group spacing={0}>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <ThemeIcon variant="light" size={30}>
+                {icon &&
+                  createElement((IconList as any)[icon], { size: rem(18) })}
+              </ThemeIcon>
+              <Box ml="md">{label}</Box>
+            </Box>
+            {hasChild && (
+              <IconChevronRight
+                className={classes.chevron}
+                stroke={1.5}
+                style={{
+                  width: rem(16),
+                  height: rem(16),
+                  transform: opened ? 'rotate(-90deg)' : 'none'
+                }}
+              />
+            )}
+          </Group>
+        </UnstyledButton>
+        {hasChild ? <Collapse in={opened}>{items}</Collapse> : null}
+      </>
+    );
+  }
 };
 
 export default LinksGroup;

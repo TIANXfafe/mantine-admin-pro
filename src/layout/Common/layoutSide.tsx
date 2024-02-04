@@ -55,11 +55,7 @@ const LayoutSide: FC<IProps> = ({ children }) => {
       p={0}
       bg={layout === 'side' ? invertedBg : ''}
       id="side"
-      style={{
-        transition: 'all .2s linear',
-        overflowY: 'auto',
-        overflowX: 'hidden'
-      }}
+      style={{ transition: 'all .2s linear' }}
     >
       {createPortal(
         <div

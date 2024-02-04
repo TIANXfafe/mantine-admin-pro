@@ -3,7 +3,7 @@ import BlankLayout from '@/layout/BlankLayout';
 import BaseLayout from '@/layout/BaseLayout';
 
 // ** Routes
-import DashboardRoutes from '@/router/guardRoutes/Dashboards.tsx';
+import DashboardRoutes from '@/router/guardRoutes/modules/Dashboards.tsx';
 import GuardRoute from '@/components/GuardRoute.tsx';
 
 // ** Default Route
