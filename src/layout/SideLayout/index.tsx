@@ -10,6 +10,7 @@ import { AppShell, Box } from '@mantine/core';
 // ** Components
 import LayoutHeader from '@/layout/Common/layoutHeader.tsx';
 import LayoutSide from '@/layout/Common/layoutSide.tsx';
+import MultiTab from '@/layout/MultiTab';
 
 interface IProps {
   headerRight?: ReactElement | string;
@@ -33,6 +34,7 @@ const SideLayout: FC<IProps> = ({ headerRight, sideMenu }) => {
       })}
     >
       <Box sx={{ height: '100%' }}>
+        <MultiTab />
         <Outlet />
       </Box>
     </AppShell>
