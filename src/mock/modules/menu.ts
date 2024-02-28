@@ -8,41 +8,31 @@ setupMock({
         code: 0,
         data: [
           {
-            label: 'Dashboard',
-            icon: 'IconGauge',
-            link: '/dashboard/analytics'
-          },
-          {
-            label: 'Market news',
-            icon: 'IconNotes',
-            initiallyOpened: true,
+            label: '仪表盘',
+            icon: 'IconDashboard',
             children: [
-              { label: 'Overview', link: '/abc' },
-              { label: 'Forecasts', link: '/' },
-              { label: 'Outlook', link: '/' },
-              { label: 'Real time', link: '/' }
+              {
+                label: '工作台',
+                link: '/dashboard/workplace'
+              },
+              {
+                label: '数据趋势',
+                link: '/dashboard/analytics'
+              },
+              {
+                label: 'HOME',
+                link: '/dashboard/home'
+              },
+              {
+                label: 'TEST',
+                link: '/dashboard/test'
+              }
             ]
           },
           {
-            label: 'Releases',
-            icon: 'IconCalendarStats',
-            children: [
-              { label: 'Upcoming releases', link: '/' },
-              { label: 'Previous releases', link: '/' },
-              { label: 'Releases schedule', link: '/' }
-            ]
-          },
-          { label: 'Analytics', icon: 'IconPresentationAnalytics' },
-          { label: 'Contracts', icon: 'IconFileAnalytics' },
-          { label: 'Settings', icon: 'IconAdjustments' },
-          {
-            label: 'Security',
-            icon: 'IconLock',
-            children: [
-              { label: 'Enable 2FA', link: '/' },
-              { label: 'Change password', link: '/' },
-              { label: 'Recovery codes', link: '/' }
-            ]
+            label: '关于',
+            icon: 'IconTilde',
+            link: '/about'
           }
         ],
         msg: 'OK'

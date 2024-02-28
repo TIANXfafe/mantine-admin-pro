@@ -9,6 +9,7 @@ import { AppShell, Box } from '@mantine/core';
 
 // ** Components
 import LayoutHeader from '@/layout/Common/layoutHeader.tsx';
+import MultiTab from '@/layout/MultiTab';
 
 interface IProps {
   headerRight?: ReactElement | string;
@@ -19,6 +20,7 @@ const TopLayout: FC<IProps> = ({ headerRight }) => {
     <AppShell
       padding={0}
       header={<LayoutHeader>{headerRight}</LayoutHeader>}
+      navbar={<div />}
       styles={(theme) => ({
         main: {
           backgroundColor:
@@ -29,6 +31,7 @@ const TopLayout: FC<IProps> = ({ headerRight }) => {
       })}
     >
       <Box sx={{ height: '100%' }}>
+        <MultiTab />
         <Outlet />
       </Box>
     </AppShell>

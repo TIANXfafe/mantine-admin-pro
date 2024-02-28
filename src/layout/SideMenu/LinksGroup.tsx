@@ -15,7 +15,8 @@ import { IconChevronRight } from '@tabler/icons-react';
 import * as IconList from '@tabler/icons-react';
 import type { MantineTheme } from '@mantine/core';
 import type { TMenuItem } from '@/config/menu.ts';
-import { useAppSelector } from '@/utils/hooks/useAppStore.ts';
+import { useAppDispatch, useAppSelector } from '@/utils/hooks/useAppStore.ts';
+import { addTab } from '@/redux/reducers/menu.ts';
 
 const useStyles = createStyles(
   (theme: MantineTheme, { collapsed }: { collapsed: boolean }) => {
@@ -62,6 +63,7 @@ const LinksGroup: FC<TMenuItem> = ({
   children
 }) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const hasChild = Array.isArray(children);
   const { collapsed } = useAppSelector((state) => state.app);
   const { classes } = useStyles({ collapsed });
@@ -73,6 +75,7 @@ const LinksGroup: FC<TMenuItem> = ({
       if (!collapsed) setOpened((o) => !o);
       else return;
     } else {
+      dispatch(addTab({ key: label, value: link }));
       navigate(link || '/');
     }
   };
@@ -81,7 +84,10 @@ const LinksGroup: FC<TMenuItem> = ({
     <Text
       className={classes.link}
       key={link.label}
-      onClick={() => navigate(link.link!)}
+      onClick={() => {
+        dispatch(addTab({ key: link.link, value: link.label }));
+        navigate(link.link!);
+      }}
     >
       {link.label}
     </Text>

@@ -55,7 +55,7 @@ const SelectUser = () => {
       transitionProps={{ transition: 'scale', duration: 150 }}
     >
       <Menu.Target>
-        <Flex gap="xs" align="center">
+        <Flex gap="xs" align="center" style={{ cursor: 'pointer' }}>
           <Avatar
             variant="outline"
             radius="xl"

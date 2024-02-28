@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from '@/utils/hooks/useAppStore.ts';
 import { getUserInfoAsync, userLoginAsync } from '@/redux/reducers/user.ts';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { setMenuAsync } from '@/redux/reducers/app.ts';
+import { setMenuAsync } from '@/redux/reducers/menu.ts';
 
 const AccountLogin = () => {
   const navigate = useNavigate();
@@ -40,9 +40,9 @@ const AccountLogin = () => {
       form.setFieldValue('password', '');
       return;
     }
-    navigate('/', { replace: true });
     await dispatch(getUserInfoAsync());
     await dispatch(setMenuAsync());
+    navigate('/', { replace: true });
   };
 
   return (

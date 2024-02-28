@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 import { flattenTree } from '@/utils/methods/tree.ts';
 import { getRoutes } from '@/router/guardRoutes';
 import { setThemeColor } from './redux/reducers/app';
+import { setMenuAsync } from './redux/reducers/menu.ts';
 
 const App = () => {
   const location = useLocation();
@@ -16,6 +17,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(setThemeColor(theme.colors));
+    dispatch(setMenuAsync());
   }, []);
 
   useEffect(() => {

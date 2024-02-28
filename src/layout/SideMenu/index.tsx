@@ -3,7 +3,7 @@ import LinksGroup from './LinksGroup.tsx';
 import { useAppSelector } from '@/utils/hooks/useAppStore.ts';
 
 const SideMenu = () => {
-  const { menuList } = useAppSelector((state) => state.app);
+  const { menuList } = useAppSelector((state) => state.menu);
 
   return (
     <ScrollArea sx={{ overflow: 'visible' }}>

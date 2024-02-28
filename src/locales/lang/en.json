@@ -34,7 +34,11 @@
     "layout.header.right.notify.not-start": "Not start",
     "layout.header.right.notify.ongoing": "Ongoing",
     "layout.header.right.notify.completed": "Completed",
-    "layout.header.right.notify.rejected": "Rejected"
+    "layout.header.right.notify.rejected": "Rejected",
+    "layout.multi-tab.close-current": "Close current",
+    "layout.multi-tab.close-other": "Close other",
+    "layout.multi-tab.close-all": "Close all",
+    "layout.multi-tab.warning": "Keep at least one tab"
   },
   "pages": {
     "login": {
