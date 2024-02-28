@@ -34,7 +34,11 @@
     "layout.header.right.notify.not-start": "未开始",
     "layout.header.right.notify.ongoing": "进行中",
     "layout.header.right.notify.completed": "已完成",
-    "layout.header.right.notify.rejected": "已拒绝"
+    "layout.header.right.notify.rejected": "已拒绝",
+    "layout.multi-tab.close-current": "关闭当前",
+    "layout.multi-tab.close-other": "关闭其它",
+    "layout.multi-tab.close-all": "关闭所有",
+    "layout.multi-tab.warning": "至少保留一个标签页"
   },
   "pages": {
     "login": {

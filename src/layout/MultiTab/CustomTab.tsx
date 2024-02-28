@@ -8,7 +8,7 @@ import {
   Text,
   UnstyledButton
 } from '@mantine/core';
-import { IconX, IconDots } from '@tabler/icons-react';
+import { IconX, IconDots, IconReload } from '@tabler/icons-react';
 import cn from 'classnames';
 import { useAppDispatch, useAppSelector } from '@/utils/hooks/useAppStore.ts';
 import {
@@ -21,6 +21,7 @@ import {
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { DefaultRoute } from '@/router/guardRoutes';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = createStyles((theme: MantineTheme) => {
   const isDark = theme.colorScheme === 'dark';
@@ -72,13 +73,18 @@ const CustomTab = () => {
   const { classes } = useStyles();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const { menuTabs, curTab } = useAppSelector((state) => state.menu);
+
+  const onRefresh = () => {
+    navigate(curTab!.key.toString());
+  };
 
   const onClose = (event: any, obj: TMenuType) => {
     event.stopPropagation();
     if (menuTabs.length === 1) {
-      toast.error('至少保留一个标签页');
+      toast.error(t('global.layout.multi-tab.warning'));
       return;
     }
     dispatch(deleteTab(obj.key));
@@ -91,7 +97,7 @@ const CustomTab = () => {
   const onGroupClose = (type: 'cur' | 'all' | 'other') => {
     if (type === 'cur') {
       if (menuTabs.length === 1) {
-        toast.error('至少保留一个标签页');
+        toast.error(t('global.layout.multi-tab.warning'));
         return;
       }
       dispatch(deleteTab(curTab!.key));
@@ -136,6 +142,13 @@ const CustomTab = () => {
               <Text className={classes.title} lineClamp={1}>
                 {item.value}
               </Text>
+              {curTab!.key === item.key && (
+                <UnstyledButton onClick={onRefresh}>
+                  <Center>
+                    <IconReload style={{ width: rem(12), height: rem(12) }} />
+                  </Center>
+                </UnstyledButton>
+              )}
               <UnstyledButton onClick={(event) => onClose(event, item)}>
                 <Center>
                   <IconX style={{ width: rem(12), height: rem(12) }} />
@@ -154,11 +167,15 @@ const CustomTab = () => {
             <IconDots style={{ width: rem(18) }} />
           </Menu.Target>
           <Menu.Dropdown>
-            <Menu.Item onClick={() => onGroupClose('cur')}>关闭当前</Menu.Item>
-            <Menu.Item onClick={() => onGroupClose('other')}>
-              关闭其他
+            <Menu.Item onClick={() => onGroupClose('cur')}>
+              {t('global.layout.multi-tab.close-current')}
             </Menu.Item>
-            <Menu.Item onClick={() => onGroupClose('all')}>关闭所有</Menu.Item>
+            <Menu.Item onClick={() => onGroupClose('other')}>
+              {t('global.layout.multi-tab.close-other')}
+            </Menu.Item>
+            <Menu.Item onClick={() => onGroupClose('all')}>
+              {t('global.layout.multi-tab.close-all')}
+            </Menu.Item>
           </Menu.Dropdown>
         </Menu>
       </div>
