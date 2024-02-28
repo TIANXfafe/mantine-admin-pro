@@ -1,6 +1,6 @@
-import { IResponseBody } from './../index';
 import { request } from '@/services';
 import { IUserInfo } from '@/redux/reducers/user.ts';
+import { IResponseBody } from '../index';
 
 export interface ILoginParams {
   account?: string;

@@ -4,8 +4,8 @@ import BaseLayout from '@/layout/BaseLayout';
 
 // ** Routes
 import DashboardRoutes from '@/router/guardRoutes/modules/Dashboards.tsx';
-import GuardRoute from '@/components/GuardRoute.tsx';
-import RecordRoute from '@/components/RecordRoute.tsx';
+import GuardRoute from '@/components/Common/GuardRoute.tsx';
+import RecordRoute from '@/components/Common/RecordRoute.tsx';
 
 // ** Default Route
 const DefaultRoute = '/dashboard/workplace';

@@ -5,6 +5,7 @@ const DashboardWorkplace = lazy(() => import('@/pages/Dashboard/Workplace'));
 const DashboardAnalytics = lazy(() => import('@/pages/Dashboard/Analytics'));
 const Home = lazy(() => import('@/pages/Home'));
 const Test = lazy(() => import('@/pages/Test'));
+const Table = lazy(() => import('@/pages/Table'));
 
 const DashboardRoutes: IRoute[] = [
   {
@@ -34,6 +35,13 @@ const DashboardRoutes: IRoute[] = [
     element: <Test />,
     meta: {
       title: 'Test页'
+    }
+  },
+  {
+    path: '/dashboard/table',
+    element: <Table />,
+    meta: {
+      title: 'Table页'
     }
   }
 ];

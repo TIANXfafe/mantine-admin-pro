@@ -26,6 +26,10 @@ setupMock({
               {
                 label: 'TEST',
                 link: '/dashboard/test'
+              },
+              {
+                label: '表单页',
+                link: '/dashboard/table'
               }
             ]
           },
