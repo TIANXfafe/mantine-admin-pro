@@ -18,7 +18,12 @@ const Notify = () => {
       transitionProps={{ transition: 'scale', duration: 150 }}
     >
       <Popover.Target>
-        <Indicator withBorder processing size={13}>
+        <Indicator
+          withBorder
+          processing
+          size={13}
+          style={{ cursor: 'pointer' }}
+        >
           <IconBellRinging size={18} />
         </Indicator>
       </Popover.Target>

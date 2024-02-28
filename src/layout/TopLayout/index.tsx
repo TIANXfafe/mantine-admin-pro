@@ -20,6 +20,7 @@ const TopLayout: FC<IProps> = ({ headerRight }) => {
     <AppShell
       padding={0}
       header={<LayoutHeader>{headerRight}</LayoutHeader>}
+      navbar={<div />}
       styles={(theme) => ({
         main: {
           backgroundColor:

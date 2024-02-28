@@ -26,7 +26,7 @@ const SelectLang = () => {
       transitionProps={{ transition: 'scale', duration: 150 }}
     >
       <Menu.Target>
-        <IconLanguage size={20} />
+        <IconLanguage size={20} style={{ cursor: 'pointer' }} />
       </Menu.Target>
       <Menu.Dropdown>
         {localeOptions.map((item) => (
